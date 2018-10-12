@@ -3,14 +3,12 @@ fetch("http://localhost:8088/food")
     .then(foods => foods.json())
     .then(parsedFoods => {
       parsedFoods.forEach(food => {
-        console.log(food)
         const foodAsHTML = foodFactory(food)
         addFoodToDom(foodAsHTML)
     })
 })
 
 const foodFactory = (foods) => {
-  console.log(foods);
   let boxCont = document.createElement("article");
   boxCont.setAttribute("class", "foodBox");
   let boxTitle = document.createElement("h1");
