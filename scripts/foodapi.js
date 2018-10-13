@@ -3,10 +3,16 @@ fetch("http://localhost:8088/food")
     .then(foods => foods.json())
     .then(parsedFoods => {
       parsedFoods.forEach(food => {
+        fetch(`https://world.openfoodfacts.org/api/v0/product/${food.barcode}.json`)
+          .then(response => response.json())
+          .then(productInfo => {
+          console.log(productInfo.code)
+        })
         const foodAsHTML = foodFactory(food)
         addFoodToDom(foodAsHTML)
     })
 })
+
 
 const foodFactory = (foods) => {
   let boxCont = document.createElement("article");
